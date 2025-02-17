@@ -2,6 +2,9 @@ import os
 import json
 from dotenv import load_dotenv
 import streamlit as st
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 # LangChain & LangGraph imports
 from langchain.schema import Document, HumanMessage
@@ -23,13 +26,16 @@ load_dotenv()
 
 # ---------------- Constants ----------------
 CHROMA_DB_PATH = "./chroma_db_json"
-JSON_FILE = r"D:\Ikonic\Wedding_planner\data\vendors_live_records_v2.json"
+JSON_FILE = "/workspaces/wedding_panner_chatbot/data/vendors_live_records_v2.json"
 IMPORTANT_CATEGORIES = ["Wedding Venues", "Photographers", "Caterers", "Transportation"]
 
 # ---------------- Initialize Embeddings, LLM & Memory ----------------
-EMBEDDING_MODEL = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
+
+OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
+
+EMBEDDING_MODEL = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 llm = ChatOpenAI(
-    openai_api_key=os.getenv("OPENAI_API_KEY"),
+    openai_api_key=OPENAI_API_KEY,
     model_name="gpt-4",
     temperature=0
 )
