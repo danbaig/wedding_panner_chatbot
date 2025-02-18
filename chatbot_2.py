@@ -26,7 +26,7 @@ load_dotenv()
 
 # ---------------- Constants ----------------
 CHROMA_DB_PATH = "./chroma_db_json"
-JSON_FILE = "/workspaces/wedding_panner_chatbot/data/vendors_live_records_v2.json"
+JSON_FILE = "./data/vendors_live_records_v2.json"
 IMPORTANT_CATEGORIES = ["Wedding Venues", "Photographers", "Caterers", "Transportation"]
 
 # ---------------- Initialize Embeddings, LLM & Memory ----------------
